@@ -54,7 +54,7 @@ export const actualizarAdmin = async (req,res)=>{
         if(!result){
             res.status(404).json({message: 'No se encontro el usuario'})
         }else{
-            res.status(200).json({message: `Actualizado con exito: ${result}`})
+            res.status(200).json(result)
             console.log(result)
         }
     }catch(error){
@@ -69,7 +69,7 @@ export const borrarAdmin = async (req,res)=>{
         if(!usuario){
             res.status(404).json({message: 'No se encontro el usuario'})            
         }else{
-            res.status(200).json({message: `Usuario eliminado con exito ${usuario}`})
+            res.status(200).json(usuario)
             console.log(usuario)
         }
     }catch(error){
@@ -97,11 +97,22 @@ export const verificarLogin = async (req,res)=>{
     }
 }
 
+export const cerrarSesion = async (req, res) => {
+    try {
+        res.status(200).json({ success: true, message: 'Cierre de sesión exitoso' });
+        console.log({message: 'Cierre de sesión exitoso'})
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Error interno del servidor' });
+    }
+}
+
 export default {
     obtenerAdmin,
     obtenerPorId,
     crearAdmin,
     actualizarAdmin,
     borrarAdmin,
-    verificarLogin
+    verificarLogin,
+    cerrarSesion
 }

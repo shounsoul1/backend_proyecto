@@ -63,7 +63,7 @@ export const actualizarProducto = async (req,res)=>{
         if(!result){
             res.status(404).json({message: 'No se encontro el producto'})
         }else{
-            res.status(200).json({message: `Actualizado con exito: ${result}`})
+            res.status(200).json(result)
             console.log(result)
         }
         
@@ -80,7 +80,8 @@ export const borrarProducto = async (req,res)=>{
         if(!producto){
             return res.status(404).json({message: 'Producto no encontrado'})
         }else{
-            return res.status(200).json({message: `Producto eliminado con exito: ${producto}`})
+            res.status(200).json(producto)
+            console.log(producto)
         }
     }catch(error){
         console.log(error)
