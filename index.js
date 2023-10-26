@@ -30,4 +30,4 @@ app.use(express.urlencoded({extended:false}))
 app.use('/api',router)
 
 app.listen(3000)
-console.log(`Corriendo server en el puerto http://localhost:${process.env.PORT}/productos 🚀`)
+console.log(`Corriendo server en el puerto http://localhost:${process.env.PORT}/api 🚀`)
