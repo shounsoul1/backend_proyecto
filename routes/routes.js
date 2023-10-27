@@ -2,7 +2,7 @@ import {Router} from 'express'
 import {traerProductos, traerProductoPorId, crearProducto, actualizarProducto, borrarProducto} from '../controllers/producto.controllers.js';
 import { obtenerAdmin, obtenerPorId, crearAdmin, actualizarAdmin, borrarAdmin, verificarLogin, cerrarSesion } from '../controllers/admin.controllers.js';
 import {obtenerEmpleados, obtenerEmpleadoPorId, crearEmpleado, actualizarEmpleado, borrarEmpleado} from '../controllers/empleado.controllers.js'
-
+import { obtenerCargos } from '../controllers/cargo.controllers.js';
 const router = Router();
 // rutas de la coleccion productos
 router.get('/productos', traerProductos)
@@ -29,5 +29,8 @@ router.post('/crearEmpleado', crearEmpleado)
 router.put('/actualizarEmpleado/:id', actualizarEmpleado)
 router.delete('/borrarEmpleado/:id', borrarEmpleado)
 
+
+// rutas para cargos
+router.get('/cargos', obtenerCargos)
 
 export default router;
