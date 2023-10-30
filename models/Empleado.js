@@ -15,6 +15,7 @@ const empleado = new mongoose.Schema({
     },
     cargo:{
         type: String,
+        ref: 'cargos',
         required: true
     },
     celular:{
