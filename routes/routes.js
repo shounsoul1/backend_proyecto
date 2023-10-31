@@ -1,9 +1,9 @@
 import {Router} from 'express'
 import {traerProductos, traerProductoPorId, crearProducto, actualizarProducto, borrarProducto} from '../controllers/producto.controllers.js';
-import { obtenerAdmin, obtenerPorId, crearAdmin, actualizarAdmin, borrarAdmin, verificarLogin, cerrarSesion } from '../controllers/admin.controllers.js';
+import {obtenerAdmin, obtenerPorId, crearAdmin, actualizarAdmin, borrarAdmin, verificarLogin, cerrarSesion} from '../controllers/admin.controllers.js';
 import {obtenerEmpleados, obtenerEmpleadoPorId, crearEmpleado, actualizarEmpleado, borrarEmpleado} from '../controllers/empleado.controllers.js'
-import { obtenerPermisos,obtenerPermisoId, crearPermiso } from '../controllers/permiso.controllers.js';
-
+import {obtenerPermisos,obtenerPermisoId, crearPermiso, actualizarPermiso, borrarPermiso} from '../controllers/permiso.controllers.js';
+import {obtenerCargos, crearCargo} from '../controllers/cargo.controllers.js';
 const router = Router();
 // rutas de la coleccion productos
 router.get('/productos', traerProductos)
@@ -31,10 +31,16 @@ router.put('/actualizarEmpleado/:id', actualizarEmpleado)
 router.delete('/borrarEmpleado/:id', borrarEmpleado)
 
 
+// ruta para cargos
+router.get('/cargos', obtenerCargos)
+router.post('/crearCargo', crearCargo)
 // rutas para permisos
 router.get('/permisos', obtenerPermisos)
 router.get('/permisosId/:id', obtenerPermisoId)
 router.post('/crearPermiso', crearPermiso)
+router.put('/actualizarPermiso/:id', actualizarPermiso)
+router.delete('/borrarPermiso/:id', borrarPermiso)
+
 
 
 

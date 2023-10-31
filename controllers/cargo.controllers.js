@@ -14,6 +14,21 @@ export const obtenerCargos = async (req,res)=>{
     }
 }
 
+export const crearCargo = async (req,res)=>{
+    try{
+        const {nombre, descripcion} = req.body;
+        const cargoCreado = new Cargo({
+            nombre,
+            descripcion
+        })
+        await cargoCreado.save()
+        res.status(200).json(cargoCreado)
+    }catch(error){
+        console.log(error)
+    }
+}
+
 export default {
-    obtenerCargos
+    obtenerCargos,
+    crearCargo
 }

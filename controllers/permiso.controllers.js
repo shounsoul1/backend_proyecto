@@ -18,10 +18,10 @@ export const obtenerPermisos = async (req,res)=>{
 export const obtenerPermisoId = async (req,res) =>{
     try {
         const id = req.params.id;
-        const permiso = await Permiso.findById(id).populate('empleado_id').exec();
+        const permiso = await Permiso.findById(id).populate('empleado_id');
         console.log(permiso);
         if(!permiso){
-            res.status(404).json({message: `No existen registros de la id: ${id}`})
+            res.status(404).json({message: `No existen registros con la id: ${id}`})
         }else{
             res.status(200).json(permiso);
         }
@@ -50,8 +50,41 @@ export const crearPermiso = async (req,res)=>{
     }
 }
 
+export const actualizarPermiso = async (req,res)=>{
+    try{
+        const id = req.params.id;
+        const permisoActualizado = req.body;
+        const result = await Permiso.findByIdAndUpdate(id, permisoActualizado, {new:true}).populate('empleado_id');
+        if(!result){
+            res.status(404).json({message: 'No existe el registro'})
+        }else{
+            res.status(200).json(result)
+            console.log(result)
+        }
+    }catch(error){
+        console.log(error)
+        res.status(500).json({message: 'Internal server error'})
+    }
+}
+
+export const borrarPermiso = async (req,res)=>{
+    try{
+        const result = await Permiso.findByIdAndDelete(req.params.id);
+        if(!result){
+            res.status(404).json({message: 'No se encontro el permiso'})
+        }else{
+            res.status(200).json(result)
+        }
+    }catch(error){
+        console.log(error)
+        res.status(500).json({message: 'Internal server error'})
+    }
+}
+
 export default {
     obtenerPermisos,
     obtenerPermisoId,
-    crearPermiso
+    crearPermiso,
+    actualizarPermiso,
+    borrarPermiso
 }
